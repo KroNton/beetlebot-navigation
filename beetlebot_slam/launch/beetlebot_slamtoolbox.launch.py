@@ -16,8 +16,7 @@ def generate_launch_description():
             output='screen',
             parameters=[{'use_sim_time': True}],
             arguments=['-configuration_directory', cartographer_config_dir,
-                       '-configuration_basename', configuration_basename],
-            remappings=[('/scan', '/lidar')],
+                       '-configuration_basename', configuration_basename]
             ),
 
         Node(
