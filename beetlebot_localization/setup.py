@@ -1,6 +1,8 @@
 from setuptools import find_packages, setup
 
 package_name = 'beetlebot_localization'
+import os
+from glob import glob
 
 setup(
     name=package_name,
@@ -10,6 +12,9 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
+        (os.path.join('share', package_name, 'config'), glob('config/*')),     
+        (os.path.join('share', package_name, 'map'), glob('map/*')),    
     ],
     install_requires=['setuptools'],
     zip_safe=True,
