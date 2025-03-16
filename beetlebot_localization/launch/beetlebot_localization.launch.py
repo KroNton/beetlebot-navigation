@@ -6,7 +6,7 @@ from ament_index_python.packages import get_package_share_directory
 
 nav2_yaml = os.path.join(get_package_share_directory('beetlebot_navigation'), 'config', 'beetlebot_amcl.yaml')
 
-map_file=os.path.join(get_package_share_directory('beetlebot_navigation'), 'map', 'beetlebot_map.yaml')
+map_file=os.path.join(get_package_share_directory('beetlebot_navigation'), 'map', 'warehouse_map.yaml')
 
 configuration_basename = 'beetlebot_2d.lua'
 def generate_launch_description():
