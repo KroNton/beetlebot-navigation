@@ -6,9 +6,8 @@ from ament_index_python.packages import get_package_share_directory
 
 nav2_yaml = os.path.join(get_package_share_directory('beetlebot_localization'), 'config', 'beetlebot_amcl.yaml')
 
-map_file=os.path.join(get_package_share_directory('beetlebot_localization'), 'map', 'warehouse_map.yaml')
+map_file = os.path.join(get_package_share_directory('beetlebot_localization'), 'map', 'map.yaml')
 
-configuration_basename = 'beetlebot_2d.lua'
 def generate_launch_description():
     return LaunchDescription([
 
@@ -36,7 +35,7 @@ def generate_launch_description():
 
             package='nav2_lifecycle_manager',
             executable='lifecycle_manager',
-            name='lifecycle_manager_mapper',
+            name='lifecycle_manager_localization',
             output='screen',
             parameters=[{'use_sim_time': True},
                         {'autostart': True},
