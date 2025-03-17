@@ -51,7 +51,7 @@ def generate_launch_description():
 
     # Delay the launch of these nodes by 5 seconds
     delayed_nodes = TimerAction(
-        period=1.0,  # Delay duration in seconds
+        period=2.0,  # Delay duration in seconds
         actions=[
             map_server_node,
             amcl_node,
