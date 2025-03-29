@@ -25,6 +25,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'initial_pose_pub = beetlebot_localization.initial_pose_pub.py:main',
         ],
     },
 )
