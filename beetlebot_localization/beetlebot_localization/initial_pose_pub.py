@@ -9,13 +9,7 @@ class InitialPosePublisher(Node):
     def __init__(self):
         super().__init__('InitialPose_publisher')
         self.publisher_ = self.create_publisher(PoseWithCovarianceStamped, '/initialpose', 10)
-        timer_period = 0.5  # seconds
-        self.timer = self.create_timer(timer_period, self.timer_callback)
-        self.subscription = self.create_subscription(
-            PointStamped,
-            '/clicked_point',
-            self.clicked_point_callback,
-            10)
+        self.subscription = self.create_subscription(PointStamped,'/clicked_point',self.clicked_point_callback,10)
         self.subscription  # prevent unused variable warning
         self.x = 0.0
         self.y = 0.0
@@ -25,8 +19,9 @@ class InitialPosePublisher(Node):
         self.y = msg.point.y
         self.get_logger().info('X point: "%s"' % msg.point.x)
         self.get_logger().info('Y point: "%s"' % msg.point.y)
+        self.initial_pose_publisher()
 
-    def timer_callback(self):
+    def initial_pose_publisher(self):
         msg = PoseWithCovarianceStamped()
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.header.frame_id = "map"
