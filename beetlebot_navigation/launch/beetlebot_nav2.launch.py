@@ -9,6 +9,7 @@ nav2_yaml = os.path.join(get_package_share_directory('beetlebot_navigation'), 'c
 controller_yaml = os.path.join(get_package_share_directory('beetlebot_navigation'), 'config', 'controller.yaml')
 bt_navigator_yaml = os.path.join(get_package_share_directory('beetlebot_navigation'), 'config', 'bt_navigator.yaml')
 recovery_yaml = os.path.join(get_package_share_directory('beetlebot_navigation'), 'config', 'recovery.yaml')
+
 def generate_launch_description():
     # Define the RViz node
     planner_node = Node(
@@ -38,7 +39,7 @@ def generate_launch_description():
         executable='behavior_server',
         name='recoveries_server',
         parameters=[recovery_yaml],
-        output='screen'),
+        output='screen')
 
     # Define the lifecycle manager node
     lifecycle_manager_node = Node(
@@ -48,7 +49,10 @@ def generate_launch_description():
         output='screen',
         parameters=[{'use_sim_time': True},
                     {'autostart': True},
-                    {'node_names': ['planner_server', 'controller_server', 'bt_navigator', 'behavior_server']}],
+                    {'node_names': ['planner_server', 
+                                   'controller_server', 
+                                   'bt_navigator', 
+                                   'recoveries_server']}],
     )
 
     # Delay the launch of these nodes by 5 seconds
@@ -65,5 +69,5 @@ def generate_launch_description():
 
     # Add everything to the LaunchDescription
     return LaunchDescription([
-        delayed_nodes   # Launch other nodes after a 1-second delay
+        delayed_nodes   # Launch other nodes after a 2-second delay
     ])
