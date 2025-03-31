@@ -28,6 +28,11 @@ class InitialPosePublisher(Node):
 
     def timer_callback(self):
         msg = PoseWithCovarianceStamped()
+        msg.header.stamp = self.get_clock().now().to_msg()
+        msg.header.frame_id = "map"
+        msg.pose.covariance[0] = 0.25
+        msg.pose.covariance[7] = 0.25
+        msg.pose.covariance[35] = 0.06853891945200942
         msg.pose.pose.position.x = self.x
         msg.pose.pose.position.y = self.y
         msg.pose.pose.position.z = 0.0
