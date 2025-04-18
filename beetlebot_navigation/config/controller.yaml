@@ -74,9 +74,10 @@ local_costmap:
       width: 4
       height: 4
       robot_radius: 0.4
+      # footprint: '[[0.325, 0.325], [0.325, -0.325], [-0.325, -0.325], [-0.325, 0.325]]' # use this in case of robot is not circular
       resolution: 0.05
       track_unknown_space: true
-      plugins: ["obstacle_layer","inflation_layer"]
+      plugins: ["obstacle_layer","voxel_layer","inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.5
@@ -100,3 +101,29 @@ local_costmap:
       static_layer:
         map_subscribe_transient_local: True
         always_send_full_costmap: True
+
+      voxel_layer:
+          plugin: "nav2_costmap_2d::VoxelLayer"
+          enabled: True
+          footprint_clearing_enabled: true
+          max_obstacle_height: 2.0
+          publish_voxel_map: True
+          origin_z: 0.0
+          z_resolution: 0.05
+          z_voxels: 16
+          max_obstacle_height: 2.0
+          unknown_threshold: 15
+          mark_threshold: 0
+          observation_sources: pointcloud
+          combination_method: 1
+          pointcloud:  # no frame set, uses frame from message
+            topic: /camera/depth/points
+            max_obstacle_height: 2.0
+            min_obstacle_height: 0.0
+            obstacle_max_range: 2.5
+            obstacle_min_range: 0.0
+            raytrace_max_range: 3.0
+            raytrace_min_range: 0.0
+            clearing: True
+            marking: True
+            data_type: "PointCloud2"
