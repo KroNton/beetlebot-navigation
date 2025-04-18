@@ -27,8 +27,8 @@ global_costmap:
         map_subscribe_transient_local: True
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        cost_scaling_factor: 3.5
-        inflation_radius: 1.0
+        cost_scaling_factor: 3.5 
+        inflation_radius: 1.0  #increase this value to make generated global path away from obstacles and walls
       always_send_full_costmap: True
 
       obstacle_layer:
