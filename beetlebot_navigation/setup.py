@@ -13,6 +13,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
         (os.path.join('share', package_name, 'config'), glob('config/*')), 
+        (os.path.join('share', package_name, 'behavior_tree'), glob('behavior_tree/*')), 
     ],
     install_requires=['setuptools'],
     zip_safe=True,
