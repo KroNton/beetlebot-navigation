@@ -49,19 +49,11 @@ def generate_launch_description():
                     {'node_names': ['map_server', 'amcl']}]
     )
 
-    # Delay the launch of these nodes by 5 seconds
-    delayed_nodes = TimerAction(
-        period=2.0,  # Delay duration in seconds
-        actions=[
-            map_server_node,
-            amcl_node,
-            lifecycle_manager_node
-        ]
-    )
 
     # Add everything to the LaunchDescription
     return LaunchDescription([
-        rviz_node, # Launch RViz immediately 
-        
-        delayed_nodes   # Launch other nodes after a 1-second delay
+        map_server_node,
+        amcl_node,
+        lifecycle_manager_node,
+        # rviz_node, 
     ])
