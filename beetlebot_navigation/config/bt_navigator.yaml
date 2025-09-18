@@ -1,5 +1,7 @@
 bt_navigator:
   ros__parameters:
+    enable_groot_monitoring: true
+    groot_server_port: 5555
     use_sim_time: True
     global_frame: map
     robot_base_frame: beetlebot
