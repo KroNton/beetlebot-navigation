@@ -24,6 +24,7 @@ controller_server:
       
     FollowPath:
       plugin: "nav2_regulated_pure_pursuit_controller::RegulatedPurePursuitController"
+      use_stamped_vel: true 
       desired_linear_vel: 0.3
       lookahead_dist: 0.6
       min_lookahead_dist: 0.3
@@ -56,7 +57,7 @@ local_costmap:
     ros__parameters:
       update_frequency: 5.0
       publish_frequency: 2.0
-      global_frame: beetlebot/odom
+      global_frame: odom
       robot_base_frame: beetlebot
       use_sim_time: True
       rolling_window: true
