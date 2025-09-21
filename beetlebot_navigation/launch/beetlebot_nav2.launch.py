@@ -19,7 +19,8 @@ def generate_launch_description():
         executable='controller_server',
         name='controller_server',
         output='screen',
-        parameters=[controller_yaml,{"use_sim_time": use_sim_time}])
+        parameters=[controller_yaml,{"use_sim_time": use_sim_time}],
+        remappings=[('/odom','/beetlebot_diff_drive_controller/odom')])
 
     # Planner Server Node
     planner_node = Node(
@@ -27,7 +28,9 @@ def generate_launch_description():
         executable='planner_server',
         name='planner_server',
         output='screen',
-        parameters=[planner_yaml,{"use_sim_time": use_sim_time}])
+        parameters=[planner_yaml,{"use_sim_time": use_sim_time},]
+        
+        )
         
     # Behavior Server Node
     nav2_behaviors_node = Node(
@@ -44,7 +47,8 @@ def generate_launch_description():
         executable='bt_navigator',
         name='bt_navigator',
         output='screen',
-        parameters=[bt_navigator_yaml,{"use_sim_time": use_sim_time}])
+        parameters=[bt_navigator_yaml,{"use_sim_time": use_sim_time}],
+        remappings=[('/odom','/beetlebot_diff_drive_controller/odom')])
 
     # FIX 2: Added the Smoother Server Node
     smoother_node = Node(
